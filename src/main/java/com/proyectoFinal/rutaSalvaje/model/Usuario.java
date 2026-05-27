@@ -1,6 +1,9 @@
 package com.proyectoFinal.rutaSalvaje.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +18,9 @@ public class Usuario implements UserDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private String nombre;
+
     @Column(unique = true, nullable = false)
     private String email;
 
@@ -22,16 +28,13 @@ public class Usuario implements UserDetails {
     private String password;
 
     @Column(nullable = false)
-    private String nombre;
-
-    @Column(nullable = false)
     private String telefono;
 
     @Column(nullable = false)
-    private String nombre_emergencia;
+    private String nombreEmergencia;
 
     @Column(nullable = false)
-    private String telefono_emergencia;
+    private String telefonoEmergencia;
 
     @Column(nullable = false)
     private String parentesco;
@@ -42,13 +45,13 @@ public class Usuario implements UserDetails {
 
     public Usuario() {}
 
-    public Usuario(String email, String password, String nombre, String telefono, String nombre_emergencia, String telefono_emergencia, String parentesco, Rol rol) {
+    public Usuario(String nombre, String email, String password, String telefono, String nombreEmergencia, String telefonoEmergencia, String parentesco, Rol rol) {
+        this.nombre = nombre;
         this.email = email;
         this.password = password;
-        this.nombre = nombre;
         this.telefono = telefono;
-        this.nombre_emergencia = nombre_emergencia;
-        this.telefono_emergencia = telefono_emergencia;
+        this.nombreEmergencia = nombreEmergencia;
+        this.telefonoEmergencia = telefonoEmergencia;
         this.parentesco = parentesco;
         this.rol = rol;
     }
@@ -84,20 +87,71 @@ public class Usuario implements UserDetails {
     @Override
     public boolean isEnabled() { return true; }
 
-    public Long getId() { return id; }
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
-    public void setPassword(String password) { this.password = password; }
-    public String getNombre() { return nombre; }
-    public void setNombre(String nombre) { this.nombre = nombre; }
-    public Rol getRol() { return rol; }
-    public void setRol(Rol rol) { this.rol = rol; }
-    public String getTelefono() { return telefono; }
-    public String getNombre_emergencia() { return nombre_emergencia; }
-    public String getTelefono_emergencia() { return telefono_emergencia; }
-    public String getParentesco() { return parentesco; }
-    public void setTelefono(String telefono) { this.telefono = telefono; }
-    public void setNombre_emergencia(String nombre_emergencia) { this.nombre_emergencia = nombre_emergencia; }
-    public void setTelefono_emergencia(String telefono_emergencia) { this.telefono_emergencia = telefono_emergencia; }
-    public void setParentesco(String parentesco) { this.parentesco = parentesco; }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getNombreEmergencia() {
+        return nombreEmergencia;
+    }
+
+    public void setNombreEmergencia(String nombreEmergencia) {
+        this.nombreEmergencia = nombreEmergencia;
+    }
+
+    public String getTelefonoEmergencia() {
+        return telefonoEmergencia;
+    }
+
+    public void setTelefonoEmergencia(String telefonoEmergencia) {
+        this.telefonoEmergencia = telefonoEmergencia;
+    }
+
+    public String getParentesco() {
+        return parentesco;
+    }
+
+    public void setParentesco(String parentesco) {
+        this.parentesco = parentesco;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
 }

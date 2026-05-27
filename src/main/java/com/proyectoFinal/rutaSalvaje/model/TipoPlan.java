@@ -1,5 +1,8 @@
 package com.proyectoFinal.rutaSalvaje.model;
 
 public enum TipoPlan {
-    AVENTURA
+    AVENTURA,
+    ROMANTICO,
+    FAMILIAR,
+    EXTREMO
 }
