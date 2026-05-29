@@ -6,6 +6,7 @@ import com.proyectoFinal.rutaSalvaje.dto.PlanResponseDTO;
 import com.proyectoFinal.rutaSalvaje.mapper.PlanMapper;
 import com.proyectoFinal.rutaSalvaje.model.Plan;
 import com.proyectoFinal.rutaSalvaje.repository.PlanRepository;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -72,7 +73,7 @@ public class PlanService {
 
     }
 
-    public PlanResponseDTO actualizarPlan (Long id, PlanResponseDTO nuevoPlan) {
+    public PlanResponseDTO actualizarPlan (Long id, @Valid PlanRequestDTO nuevoPlan) {
         if (id == null || id <= 0) {
             throw new IllegalArgumentException("El ID no puede ser menor a 0");
         }
