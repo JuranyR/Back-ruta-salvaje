@@ -4,6 +4,7 @@ package com.proyectoFinal.rutaSalvaje.controller;
 import com.proyectoFinal.rutaSalvaje.dto.ContactoRequestDTO;
 import com.proyectoFinal.rutaSalvaje.dto.ContactoResponseDTO;
 import com.proyectoFinal.rutaSalvaje.service.ContactoService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/contactos")
+@SecurityRequirement(name = "bearerAuth")
 public class ContactoController {
 
     private final ContactoService contactoService;

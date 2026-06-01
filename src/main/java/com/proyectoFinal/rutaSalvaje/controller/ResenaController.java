@@ -4,6 +4,7 @@ package com.proyectoFinal.rutaSalvaje.controller;
 import com.proyectoFinal.rutaSalvaje.dto.ResenaRequestDTO;
 import com.proyectoFinal.rutaSalvaje.dto.ResenaResponseDTO;
 import com.proyectoFinal.rutaSalvaje.service.ResenaService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/resenas")
+@SecurityRequirement(name = "bearerAuth")
 public class ResenaController {
 
     private final ResenaService resenaService;

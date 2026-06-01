@@ -6,6 +6,7 @@ import com.proyectoFinal.rutaSalvaje.dto.ContactoResponseDTO;
 import com.proyectoFinal.rutaSalvaje.dto.UsuarioRequestDTO;
 import com.proyectoFinal.rutaSalvaje.dto.UsuarioResponseDTO;
 import com.proyectoFinal.rutaSalvaje.service.UsuarioService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/usuarios")
+@SecurityRequirement(name = "bearerAuth")
 public class UsuarioController {
 
     private final UsuarioService usuarioService;

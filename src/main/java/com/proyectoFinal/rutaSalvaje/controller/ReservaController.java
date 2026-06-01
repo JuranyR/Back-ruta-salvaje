@@ -6,6 +6,7 @@ import com.proyectoFinal.rutaSalvaje.dto.ReservaResponseDTO;
 import com.proyectoFinal.rutaSalvaje.model.Rol;
 import com.proyectoFinal.rutaSalvaje.model.Usuario;
 import com.proyectoFinal.rutaSalvaje.service.ReservaService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/reservas")
+@SecurityRequirement(name = "bearerAuth")
 public class ReservaController {
 
     private final ReservaService reservaService;

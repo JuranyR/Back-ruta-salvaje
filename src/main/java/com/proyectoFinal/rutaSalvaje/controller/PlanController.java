@@ -5,6 +5,7 @@ import com.proyectoFinal.rutaSalvaje.dto.PlanRequestDTO;
 import com.proyectoFinal.rutaSalvaje.dto.PlanResponseDTO;
 import com.proyectoFinal.rutaSalvaje.service.CloudinaryService;
 import com.proyectoFinal.rutaSalvaje.service.PlanService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/planes")
+@SecurityRequirement(name = "bearerAuth")
 public class PlanController {
 
     private final PlanService planService;
@@ -28,7 +30,6 @@ public class PlanController {
         this.cloudinaryService = cloudinaryService;
     }
 
-    // 3. Modificamos el método para recibir el archivo
     @PostMapping(consumes = {"multipart/form-data"})
     public ResponseEntity<PlanResponseDTO> crearPlan(
             @RequestParam("file") MultipartFile file,
@@ -41,10 +42,8 @@ public class PlanController {
             @RequestParam("estado") Boolean estado,
             @RequestParam("actividades") String actividades) throws IOException {
 
-        // A. Subimos a Cloudinary y obtenemos la URL
         String urlImagen = cloudinaryService.uploadFile(file);
 
-        // B. Creamos el DTO con la URL obtenida
         PlanRequestDTO planDTO = new PlanRequestDTO();
         planDTO.setNombre(nombre);
         planDTO.setDescripcion(descripcion);
@@ -54,9 +53,8 @@ public class PlanController {
         planDTO.setDificultad(dificultad);
         planDTO.setEstado(estado);
         planDTO.setActividades(actividades);
-        planDTO.setImagen(urlImagen); // Guardamos la URL en el objeto
+        planDTO.setImagen(urlImagen);
 
-        // C. Guardamos en BD
         PlanResponseDTO planCreado = planService.crearPlan(planDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(planCreado);
     }
