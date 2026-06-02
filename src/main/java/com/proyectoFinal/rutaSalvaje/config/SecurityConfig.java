@@ -67,7 +67,8 @@ public class SecurityConfig {
         config.setAllowedOriginPatterns(List.of(
                 "http://127.0.0.1:*",
                 "http://localhost:*",
-                "https://juranyr.github.io"
+                "https://juranyr.github.io",
+                "https://*.onrender.com"   // ← permite Swagger UI y el frontend en Render
         ));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         config.setAllowedHeaders(List.of("Authorization", "Content-Type"));
